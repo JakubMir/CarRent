@@ -1,0 +1,25 @@
+{
+  "name": "vehicle-service",
+  "version": "1.0.0",
+  "main": "src/app.ts",
+  "type": "module",
+  "scripts": {
+    "start": "vite-node src/server.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.12.2",
+    "@grpc/proto-loader": "^0.7.13",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.5",
+    "reflect-metadata": "^0.2.2",
+    "supertest": "^7.0.0",
+    "vite-node": "^2.1.1",
+    "vitest": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.4"
+  }
+}

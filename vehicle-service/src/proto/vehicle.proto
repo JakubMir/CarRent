@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package vehicle;
+
+service VehicleService {
+  rpc GetVehicles (Empty) returns (VehicleList);
+  rpc GetVehicleByMake(VehicleRequest) returns (VehicleList);
+  rpc GetVehicleByModel(VehicleRequest) returns (VehicleList);
+  rpc GetVehicleByMakeAndModel(VehicleRequest) returns (VehicleList);
+}
+
+message Empty {}
+
+message VehicleRequest {
+  string make = 1;
+  string model = 2;
+}
+
+message Vehicle {
+  string id = 1;
+  string make = 2;
+  string model = 3;
+  int32 year = 4;
+  string fuelType = 5;
+  string drive = 6;
+}
+
+message VehicleList {
+  repeated Vehicle vehicles = 1;
+}

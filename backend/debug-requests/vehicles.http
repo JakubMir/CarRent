@@ -1,0 +1,11 @@
+### Get vehicles from vehicle api microservice
+GET http://localhost:3000/vehicles
+
+### Get vehicles by make from vehicle api microservice
+GET http://localhost:3000/vehicles?make=Chev
+
+### Get vehicles by model from vehicle api microservice
+GET http://localhost:3000/vehicles?model=Corolla
+
+### Get vehicles by make and model from vehicle api microservice
+GET http://localhost:3000/vehicles?make=Toyota&model=Corolla

@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package reservation;
+
+service ReservationService {
+  rpc CreateReservation(CreateReservationRequest) returns (CreateReservationResponse);
+  rpc GetReservationsByUser(GetReservationsByUserRequest) returns (GetReservationsByUserResponse);
+  rpc GetReservationsByVehicle(GetReservationsByVehicleRequest) returns (GetReservationsByVehicleResponse);
+  rpc UpdateReservation(UpdateReservationRequest) returns (UpdateReservationResponse);
+  rpc GetReservations(GetReservationsRequest) returns (GetReservationsResponse);
+  rpc DeleteReservation(DeleteReservationRequest) returns (DeleteReservationResponse);
+}
+
+message Reservation {
+  string id = 1;
+  string vehicleId = 2;
+  string vehicleName = 3;
+  string userId = 4;
+  string email = 5;
+  string startDate = 6;
+  string endDate = 7;
+  string status = 8;
+}
+
+message CreateReservationRequest {
+  string vehicleId = 1;
+  string vehicleName = 2;
+  string userId = 3;
+  string email = 4;
+  string startDate = 5;
+  string endDate = 6;
+  string status = 7;
+}
+
+message CreateReservationResponse {
+  Reservation reservation = 1;
+}
+
+message GetReservationsByUserRequest {
+  string userId = 1;
+}
+
+message GetReservationsByVehicleRequest {
+  string vehicleId = 1;
+}
+
+message GetReservationsByUserResponse {
+  repeated Reservation reservations = 1;
+}
+
+message GetReservationsByVehicleResponse {
+  repeated Reservation reservations = 1;
+}
+
+message UpdateReservationRequest {
+  string id = 1;
+  string vehicleId = 2;
+  string vehicleName = 3;
+  string userId = 4;
+  string email = 5;
+  string startDate = 6;
+  string endDate = 7;
+  string status = 8;
+}
+
+message UpdateReservationResponse {
+  Reservation reservation = 1;
+}
+
+message GetReservationsRequest {}
+
+message GetReservationsResponse {
+  repeated Reservation reservations = 1;
+}
+
+message DeleteReservationRequest {
+  string id = 1;
+}
+
+message DeleteReservationResponse {}

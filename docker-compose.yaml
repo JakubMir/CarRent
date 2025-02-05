@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5001:3000"
+    environment:
+      - CORS_ORIGIN=http://localhost:5002  # CORS pro frontend běžící na localhostu
+      - VEHICLE_SERVICE_URL=vehicle_service:50051
+      - AUTH_SERVICE_URL=auth_service:50052
+      - RESERVATION_SERVICE_URL=reservation_service:50053
+      - NOTIFICATION_SERVICE_URL=http://notification_service:50054
+    networks:
+      - vehicle-service-net
+      - auth-service-net
+      - reservation-service-net
+      - notification-service-net
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_BACKEND_URL: http://localhost:5001
+        VITE_NOTIFICATIONS_BACKEND_URL: http://localhost:50054
+    ports:
+      - "5002:4173"
+    networks:
+      - notification-service-net
+
+  vehicle_service:
+    build:
+      context: ./vehicle-service
+    networks:
+      - vehicle-service-net
+
+  auth_service:
+    build:
+      context: ./auth-service
+    networks:
+      - auth-service-net
+
+  reservation_service:
+    build:
+      context: ./reservation-service
+    networks:
+      - reservation-service-net
+
+  notification_service:
+    build:
+      context: ./notification-service
+    environment:
+      - CORS_ORIGIN=http://localhost:5002
+    ports:
+      - "50054:50054"
+    networks:
+      - notification-service-net
+
+networks:
+  vehicle-service-net:
+  auth-service-net:
+  reservation-service-net:
+  notification-service-net:
