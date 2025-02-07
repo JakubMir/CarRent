@@ -69,7 +69,7 @@ export function useAuthService() {
     } catch (err) {
       if (axios.isAxiosError(err)) {
         if (err.response?.status === 409) {
-          throw new Error('Email je již zadlužen');
+          throw new Error('Email je již použit');
         } else {
           throw new Error('Chyba při registraci');
         }
